@@ -1,0 +1,21 @@
+/* Vendors */
+@import "~sass/variables";
+@import "~sass/mixins";
+@import "~sass/fonts";
+@import "~sass/uikit";
+@import "~vendors/bootstrap/bootstrap";
+@import "~vendors/formvalidation/formValidation.min";
+
+/* General */
+@import "~sass/utilities";
+@import "~sass/components/header";
+@import "~sass/components/blocks/block-hero-post";
+@import "~sass/components/blocks/block-academy-banner";
+@import "~sass/components/blocks/block-featured-content";
+@import "~sass/components/blocks/block-features-list";
+@import "~sass/components/blocks/block-corporative";
+@import "~sass/components/blocks/block-category-slider";
+@import "~sass/components/index";
+/* Include all other component partials here */
+@import "~sass/components/footer";
+@import "~sass/components/single";

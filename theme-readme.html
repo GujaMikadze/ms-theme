@@ -1,0 +1,707 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>WordPress + Webpack Base Theme</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d3c2832f-6c1b-4b5f-acb6-025b09cdb0df" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🥳</span></div><h1 class="page-title"><strong>WordPress + Webpack Base Theme</strong></h1></header><div class="page-body"><h3 id="8cc22995-47b0-422e-b0eb-57527bfc40de" class="">WordPress Projects documentation and startup guide</h3><h1 id="ca67a8a3-1fff-4e80-946d-2a40a3454ab0" class="">Introduction</h1><p id="ca6d9a79-0186-47be-a16a-30a3b8d8613e" class="">WordPress is regarded as one of the most robust and popular content management systems out there, hence why Making Science is keen on implementing and selling it to our clients as a nuanced solution for their websites. It allows incredible versatility and the client is faced with an intuitive and easy to use CMS for their content and various needs for their projects. This guide will help any member of the Front-End development team to get started with our curated Base theme and initial configuration of webpack as a starting point for their project.</p><h2 id="993ed23f-875b-4c3c-8d0c-7c6393b494e6" class="">Quick Links:</h2><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="476e3db7-f877-40de-bd59-4aea510b9099"><div style="font-size:1.5em"><span class="icon">➡️</span></div><div style="width:100%"><a href="https://www.notion.so/WordPress-Webpack-Base-Theme-d3c2832f6c1b4b5facb6025b09cdb0df">Theme folder structure</a></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="5c996886-6ab7-4fb7-ab4b-2faea0e3d135"><div style="font-size:1.5em"><span class="icon">➡️</span></div><div style="width:100%"><a href="https://www.notion.so/WordPress-Webpack-Base-Theme-d3c2832f6c1b4b5facb6025b09cdb0df">Webpack folder structure</a></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="27ed0c6a-13eb-4cef-9416-b2eabff649c0"><div style="font-size:1.5em"><span class="icon">➡️</span></div><div style="width:100%"><a href="https://www.notion.so/WordPress-Webpack-Base-Theme-d3c2832f6c1b4b5facb6025b09cdb0df">Local Dev Environment setup</a></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="64dd5d26-c2b2-43a4-99d3-bc488f8dfd92"><div style="font-size:1.5em"><span class="icon">➡️</span></div><div style="width:100%"><a href="https://www.notion.so/WordPress-Webpack-Base-Theme-d3c2832f6c1b4b5facb6025b09cdb0df">Webpack installation and startup</a></div></figure><h1 id="dc86c92d-bd6f-49e7-8411-fa7cd1728a4d" class=""><strong>Installation and configuration</strong></h1><p id="9d6ca7d8-0df6-4f9e-8a00-3d41ed1ccab3" class="">Installing the Base theme is as simple as having a clean installation of WordPress (for maximized compatibility, although an already pre-configured installation might work), then within the Themes section of the Administration panel of WP, select the option to upload a new theme, selecting the .ZIP file containing the base theme and subsequently applying said theme after installation is completed.</p><h1 id="0226199a-a1f5-4381-be86-4af57328e145" class=""><strong>Theme structure</strong></h1><p id="69bdd1a4-2ec8-460f-9651-488e5f2b1553" class="">The theme is structured in a way that respects conventional practices:</p><p id="4a1ab97e-ca01-4e38-ac1b-949501803885" class="">
+</p><ul id="af446c6e-bb5a-4155-a0c6-bf6df5138e3f" class="bulleted-list"><li style="list-style-type:disc">Within the <strong>root </strong>“<strong>_</strong>” folder of the theme, there are folders pertaining to each of the main aspects of visual and logical functionality of a website: CSS (css), JavaScript (js), Images (img) and Fonts (fonts).<ul id="95ea6bf4-3571-4e9c-8a29-39647efd0059" class="bulleted-list"><li style="list-style-type:circle">Within the <strong>CSS </strong>(<em><strong>css</strong></em>) folder there are two main folders:<ul id="050da42a-2566-4f60-973b-ecb89d9ec3b8" class="bulleted-list"><li style="list-style-type:square">The “<strong>SCSS</strong>” (<em><strong>sass</strong></em>) folder contains all CSS partials and components of the <strong>SASS </strong>(or <em><strong>SCSS</strong></em>) files that comprehend the visual aspects of the theme.<ul id="ec91b2d6-275b-4f6f-b52e-2d7b2411b8fe" class="bulleted-list"><li style="list-style-type:disc">Inside the <strong>SCSS </strong>(<em><strong>sass</strong></em>) folder, we find the <mark class="highlight-teal"><code><strong>main.scss</strong></code></mark> file, which is the node aggregator for every SCSS partial and module that needs to be imported and integrated into the SASS compilation.<ul id="21b62c7f-e06f-4a9f-8821-6533f55e0cfc" class="bulleted-list"><li style="list-style-type:circle">Inside this folder there is also a “<strong>modules</strong>” folder, where all the SCSS partial should be included for organizational purposes.</li></ul></li></ul></li></ul><ul id="8187969d-7034-435a-8c0a-acf06ce7d490" class="bulleted-list"><li style="list-style-type:square">The “<strong>Vendors</strong>” (<em><strong>vendors</strong></em>) folder contains third-party libraries that can be implemented within the theme and provide standardization and common practices for the development of the website; we mainly use Normalize.css, “formValidation”, Slick (for sliders) and, of course, Bootstrap.</li></ul></li></ul><ul id="c9f0bca1-9e8a-45e5-ba60-4ecbd8927338" class="bulleted-list"><li style="list-style-type:circle">Within the <strong>JavaScript </strong>(<em><strong>js</strong></em>) folder, we can find all of the .JS files that are used as the logical modules for the website. As a rule of thumb, each .JS file should represent a concrete and specific logical component of a module or segment of the website; meaning that the code should be divided into a decentralized structure so that the code itself is more manageable and scalable.<ul id="9b95f69e-bc54-43ea-a4d1-251ec9f369ca" class="bulleted-list"><li style="list-style-type:square">Inside this folder is, similar to the CSS aspect of the theme, a “<strong>Vendors</strong>” (<em><strong>vendors</strong></em>) folder, which contains any libraries that will be used throughout the project. Just like with CSS, the default libraries that are included in the theme are Bootstrap and “formValidation”.</li></ul></li></ul><ul id="0bb94c2d-28a4-487a-871e-86ddf9ab7202" class="bulleted-list"><li style="list-style-type:circle">Within the <strong>Images </strong>(<em><strong>img</strong></em>) folder, we must include in an organized manner (sectioned and categorized accordingly) all of the images, iconography and graphical assets that will be used on the website. It’s strongly advised to use SVG files whenever possible for iconography.</li></ul><ul id="8de64102-2895-44f2-96da-71600aa8ae00" class="bulleted-list"><li style="list-style-type:circle">Finally, within the <strong>Fonts </strong>(<em><strong>fonts</strong></em>) folder, you will find every font used within the project, either for the main website, for the administration panel of WP or even for third-party libraries that might require a specific font to function properly.</li></ul></li></ul><ul id="9fdbeb98-caf8-4d8e-901f-8146ab7256e5" class="bulleted-list"><li style="list-style-type:disc">Within the base folder of the project (on the same level as the root “<strong>_</strong>” folder), you will find different PHP files that pertain to the structure and navigation of the website. This structure is generally dictated by the needs of the project:<ul id="159f572f-ebc4-4450-8c65-38ae6e24ecd0" class="bulleted-list"><li style="list-style-type:circle">Files such as <mark class="highlight-teal"><code><strong>header.php</strong></code></mark> or <mark class="highlight-teal"><code><strong>footer.php</strong></code></mark> are reusable modules that will be included in the project in several ways, therefore having a “create once, reuse always” approach to these modules is the optimal way of approaching development of a WP-powered website.</li></ul><ul id="d82f3e76-17f0-43fb-984a-da88e726ae7c" class="bulleted-list"><li style="list-style-type:circle">The <mark class="highlight-teal"><code><strong>functions.php</strong></code></mark> file includes all the initial configuration aspects of the Theme. Including WordPress functionality, shortcodes, styles and scripts enqueueing, etc.</li></ul><ul id="22cb59c1-815f-4aa6-b4eb-ca5a13493b79" class="bulleted-list"><li style="list-style-type:circle">Inside the folder <strong>Functions </strong>“<em><strong>functions</strong></em>”, is another folder named “enqueues” which is a customized folder containing two files:<ul id="f23265dc-165e-484c-8cc8-dc85f89c17c0" class="bulleted-list"><li style="list-style-type:square">The <mark class="highlight-teal"><code><strong>enqueuescripts.php</strong></code></mark> file contains a function that enqueues the main JS file generated by Webpack to be used by Wordpress, as it’s then injected into the <strong><mark class="highlight-teal"><code>header.php</code></mark></strong> and therefore included in the entire site. Any script files added to the project <em><strong>must </strong></em>be added to <mark class="highlight-teal"><code><strong>src/index.js</strong></code></mark> as an “<mark class="highlight-red"><code><strong>import</strong></code></mark>” statement, since <strong>Webpack </strong>will bundle and compile it automatically whenever DEV or PROD builds are made.</li></ul><ul id="ae578194-5dec-4e12-9bad-01700408cda4" class="bulleted-list"><li style="list-style-type:square">The <mark class="highlight-teal"><code><strong>enqueuestyles.php</strong></code></mark> file is, in essence, the same as the “<strong>enqueuescripts.php</strong>” file, but intended for <strong>CSS </strong>files, it holds the same principle: loading and including the compiled <strong>CSS </strong>bundle file generated by <strong>Webpack </strong>into the Wordpress project. Just like with the JS files imported into <code><mark class="highlight-teal"><strong>src/index.js</strong></mark></code>, any CSS files, SASS partials or modules added to the project <em><strong>must </strong></em>be added to <mark class="highlight-teal"><code><strong>/_/css/styles.scss</strong></code></mark> as an “<mark class="highlight-red"><code><strong>@import</strong></code></mark>” statement.</li></ul></li></ul></li></ul><p id="6ec26051-5d8e-4d5e-a517-8a49b9123d25" class="">
+</p><p id="61e95eef-7004-488f-8550-95593e4f39da" class="">That is the basic structure of the theme, once the developer gets acquainted with it, the rest of the development process is “as usual”, since our goal is to utilize WordPress as a CMS only, not as a Front-End framework.</p><p id="01000c77-becd-46a9-8037-32c873b339a4" class="">
+</p><pre id="e94f446b-9670-4ea0-82e0-1b207a36ad58" class="code"><code>📂 _
+├── 📂 css
+│   ├── 📂 sass
+│   │   ├── 📁 modules
+│   │   │   └── 📝 _partial.scss
+│   │   ├── 📝 admin.scss
+│   │   └── 📝 main.scss
+│   ├── 📁 vendors
+│   └── 📝 styles.scss
+├── 📁 fonts
+├── 📁 img
+└── 📂 js
+    ├── 📁 vendors
+    ├── 📂 modules
+    │   └── 📝 _partial.js
+    ├── 📝 contacto.js
+    └── 📝 main.js</code></pre><h1 id="af8c73c9-e5d1-4560-8269-5197f1237d76" class=""><strong>Webpack + WordPress</strong></h1><p id="a9f9017a-9f13-4eb8-b9d5-20375d41e16e" class="">Webpack is commonly known as an “assets bundler” that is used as a modular extension of a project, providing it with an enriched environment of compilers, “plugins”, loaders, functionality and tools under a standard packaging system and in a way that is transparent and seamless to the browsers.</p><p id="34b6f832-aad4-42b2-b89e-7fe8caaca18c" class="">In order to comply with the defined structure of the base theme template, new assets added to the project that fall within the scope of CSS and JS files, must be imported into their matrix bundlers respectively:</p><p id="02be23e1-cfe9-444c-85c3-19a4c539d393" class="">
+</p><ul id="87e59973-5291-470c-b903-ae3a4543d7ae" class="bulleted-list"><li style="list-style-type:disc">CSS/SASS modules <em><strong>must </strong></em>be imported into the <mark class="highlight-teal"><code><strong>/_/css/syles.scss</strong></code></mark> matrix file with an “<strong>@import</strong>” declaration (E.g. <strong><mark class="highlight-red"><code>@import &quot;~sass/main&quot;;</code></mark></strong> ). This includes SASS partials (E.g. <strong>_partial.scss</strong>), vendor or third-party libraries CSS files, etc. Everything <em><strong>must </strong></em>be imported into this specific file due to Webpack targeting and compiling this as the final <strong>main.css</strong> that’s used in production.</li></ul><ul id="22f5a95d-63a7-4b38-a083-7e37809972c5" class="bulleted-list"><li style="list-style-type:disc">JS modules <em><strong>must </strong></em>be imported into the <mark class="highlight-teal"><code><strong>/src/main.js</strong></code></mark> matrix file with an “<strong>import</strong>” declaration (E.g. <strong><mark class="highlight-red"><code>import &quot;./modules/_partial&quot;;</code></mark></strong> ), this includes JS partials (E.g. <strong>_partial.js</strong>) and modules. For vendor or third-party libraries, JS files <em><strong>must </strong></em>be imported into the <mark class="highlight-teal"><code><strong>/src/vendor.js</strong></code></mark> matrix file with an “<strong>import</strong>” declaration as well. Everything <em><strong>must </strong></em>be imported into these specific files due to Webpack targeting and compiling these as the final <strong>index.bundle.js</strong> and <strong>vendor.bundle.js</strong> that are used in production.</li></ul><p id="50795b7a-3c28-4d0c-917f-2cc105cd7099" class="">
+</p><p id="017618d7-fd27-457a-8cbc-34aff064bbe4" class="">Part of the versatility that Webpack offers, is the use of different plugins and loaders that can be easily implemented into the project; this base theme template only provides the necessary loaders and plugins to compile SASS and JS files, optimize them and serve as a development or production environment, nonetheless, if you need to include or import new modules to Webpack, remember to properly add them into the corresponding Webpack configuration pack.</p><p id="03547754-4c99-4f29-8e62-b208d51b6423" class="">
+</p><ul id="788ce8f4-4fe7-4a71-9c21-d61f47616fb9" class="bulleted-list"><li style="list-style-type:disc">If the module you’re trying to install is intended for <em><strong>general </strong></em>use, indifferent from the build environment, please add it to the <strong><mark class="highlight-yellow"><code>webpack.common.js</code></mark></strong> file.</li></ul><ul id="245fae00-2359-4f6b-b99d-cb1adb007332" class="bulleted-list"><li style="list-style-type:disc">If the module is only intended as a development tool, please add it to the <code><mark class="highlight-yellow"><strong>webpack.dev.js</strong></mark></code> file and note that it will only be compiled and served for the <em><strong>Development </strong></em>environment.</li></ul><ul id="c8ebcc6d-cb38-4281-9404-26da476e7e66" class="bulleted-list"><li style="list-style-type:disc">If the module is only intended to be used in production, please add it to the <code><mark class="highlight-yellow"><strong>webpack.prod.js</strong></mark></code> file and note that it will only be compiled and served for the <em><strong>Production </strong></em>environment.</li></ul><p id="e706b011-b83d-4ca8-9d60-085d1d4dd8b9" class="">
+</p><p id="ec405681-e9e6-4d43-b682-cf21b1e8cdf8" class="">The included modules and plugins in the template are:</p><pre id="ac048801-2e26-46f0-8b31-c11ab17c87ba" class="code"><code>💡 Loaders
+├── ✔️ sass-loader
+├── ✔️ css-loader
+└── ✔️ style-loader
+
+💡 Plugins
+├── ✔️ html-webpack-plugin
+├── ✔️ clean-webpack-plugin
+├── ✔️ mini-css-extract-plugin@2.4.5
+└── ✔️ css-minimizer-webpack-plugin</code></pre><p id="78061bd4-c337-48ce-83b6-58b710d14124" class="">
+</p><p id="96366933-1eb9-4694-bd7f-9d2af68c503b" class="">The current template file structure of the Webpack installation is as follows:</p><pre id="b4046b5c-6b34-45c3-9df4-e3342b98c55c" class="code"><code>📂 MSFrontBase
+├── 📁 _
+├── 📂 dist
+│   ├── 📝 main.bundle.js
+│   ├── 📝 vendor.bundle.js
+│   └── 📝 main.css
+├── 📂 src
+│   ├── 📝 index.js
+│   └── 📝 vendor.js
+├── 📜 package.json
+├── 📝 webpack.common.js
+├── 📝 webpack.dev.js
+├── 📝 webpack.prod.js
+└── 🖥️ initwebpack.sh</code></pre><p id="c8f80e7a-403a-4660-82d8-e7afcf119eef" class="">
+</p><h1 id="32864e6f-4811-4da3-bd9e-1f96b285f498" class="">Local Dev Environment setup</h1><p id="5c607d10-fd61-43d5-9e41-94397c00be3d" class="">The local development environment must be an Apache/MySQL enabled server on your <a href="http://localhost">localhost</a>; typically this is easily achieved by installing tools like XAMPP/MAMP/WAMP on your machine. Once you have installed your preferred localhost server, follow these steps to start working on a WP project.</p><p id="927ca24b-ba12-43d7-9640-6d8cb086c2aa" class="">
+</p><ol type="1" id="4d496de8-b791-465f-90cb-519bdfe8327c" class="numbered-list" start="1"><li>On the <a href="http://localhost">localhost</a> public folder directory of your Apache distribution (usually the “<strong><mark class="highlight-teal"><code>htdocs</code></mark></strong>” folder), place a clean installation of WordPress.</li></ol><ol type="1" id="95bbfdf2-1dc8-4f4f-9e93-e31c035fc267" class="numbered-list" start="2"><li>Start your <strong>MySQL </strong>server instance, access <strong>phpMyAdmin </strong>and create a new database, remember the name you’ve given it as you’ll need it when installing WordPress.</li></ol><ol type="1" id="1cf53c19-ff48-441b-9b81-e286432b148d" class="numbered-list" start="3"><li>Start your <strong>Apache </strong>server instance and open the <a href="http://localhost">localhost</a> directory of your project (E.g. <strong><mark class="highlight-teal"><code>localhost/wordpress-project</code></mark></strong>), this will trigger the installation procedure of <strong>WordPress</strong>; it will ask for your database name, username and password, provide these details and complete installation.</li></ol><ol type="1" id="a5e1c2b9-78fd-4462-8c54-497178cb823f" class="numbered-list" start="4"><li>Once setup is finished, from within the <strong>Administrator </strong>panel of your WordPress panel, access the <strong>Appearance </strong>panel and click on “<strong>Themes</strong>”, then install the base template by clicking on “<strong>Add new</strong>” at the top and then “<strong>Upload Theme</strong>”. Once installed, activate it.</li></ol><ol type="1" id="3dbb31a7-ea12-4968-95da-28d53ab81b6b" class="numbered-list" start="5"><li>That’s it, now you’ll need to follow instructions to install and setup <strong>Webpack</strong>, which can be found in the section below.</li></ol><h1 id="c1aa7c3f-c03d-48d8-b5d8-eb2de0aeb2c2" class="">Webpack i<strong>nstallation and startup</strong></h1><p id="60565815-8e2f-41d8-958e-347e85761090" class="">Note that in order to start working on this template and use it as a launch platform for any project, a few steps need to be followed:</p><p id="d3a10569-9bcb-45ff-b666-f58acdc0e9aa" class="">
+</p><ol type="1" id="a83cb559-cdac-403d-aaaa-03cfdb4b7896" class="numbered-list" start="1"><li>Download the theme ZIP into your localhost apache server directory (usually <strong>htdocs</strong> folder for XAMPP/MAMP) and install it as a Theme on the Wordpress Admin panel.</li></ol><ol type="1" id="820847b8-7caf-4140-ad8e-85c57fc3e741" class="numbered-list" start="2"><li>On your terminal application, go to the directory containing the theme template, it’s usually located at: <mark class="highlight-teal"><code><strong>\wp-content\themes\THEME-TEMPLATE\</strong></code></mark></li></ol><ol type="1" id="1996ae53-a23e-40b7-a3fc-c38b452843f3" class="numbered-list" start="3"><li>Once in this directory, run the command <mark class="highlight-red"><code><strong>npm install --dev-save webpack webpack-cli</strong></code></mark></li></ol><ol type="1" id="2c93656a-ad12-420a-ab15-bc4cf7a35dca" class="numbered-list" start="4"><li>After the Webpack installation is done, run the command <mark class="highlight-red"><code><strong>npm i</strong></code></mark></li></ol><ol type="1" id="b6824d8d-55ad-401d-949e-e78801cb6199" class="numbered-list" start="5"><li>Start your MAMP/XAMPP/WAMPP server to serve localhost as an apache service.</li></ol><ol type="1" id="0af9e5e1-9215-4b14-b576-41c0cfad8074" class="numbered-list" start="6"><li>Run the command <mark class="highlight-red"><code><strong>npm run build</strong></code></mark> if you want to build the production version of the project and test that everything is compiling correctly.</li></ol><ol type="1" id="4c1a69d9-d43b-433b-8834-283bcb8ca72f" class="numbered-list" start="7"><li>Run the command <mark class="highlight-red"><code><strong>npm start</strong></code></mark> if you want to start the development server.</li></ol><ol type="1" id="27949a85-5bbe-49be-8049-5a3f1c3815a3" class="numbered-list" start="8"><li>All done, start coding!</li></ol><p id="1e7681ae-3b46-42fc-913c-aadbe9f2b978" class="">
+</p></div></article></body></html>

@@ -1,0 +1,65 @@
+.course-accordion {
+
+    &__body:not(:last-child) {
+        border-bottom: 1px solid $gray-light;
+    }
+
+    &__body {
+        cursor: pointer;
+        &:hover {
+            background-color: $primary;
+
+            .course-accordion__title {
+                color: $white;
+            }
+
+            .course-accordion__resources a {
+                color: $white;
+            }
+        }
+    }
+
+    &__resources {
+
+        a {
+            color: $body-color;
+            text-decoration: none;
+
+            &:hover {
+                color: $secondary !important;
+
+                path {
+                    fill: $secondary;
+                }
+            }
+        }
+
+        span {
+            font-size: .75rem;
+        }
+    }
+
+    &__duration {
+        font-size: .75rem;
+    }
+
+    .course-active {
+        background-color: $primary;
+
+            .course-accordion__title {
+                color: $white;
+            }
+
+            .course-accordion__resources a {
+                color: $white;
+            }
+    }
+
+}
+.vimeo-div {
+    display: none;
+}
+
+.vimeo-active {
+    display: block;
+}

@@ -1,0 +1,60 @@
+
+
+.posts-category-slider {
+
+  h4.extrabold {
+    font-family: $font-raleway-extra-bold;
+  }
+
+  .posts-category-slider_slide {
+    margin-right: -15px;
+  }
+
+  .posts-category-slider__title {
+
+    h1 {
+      font-family: $font-raleway-extra-bold;
+    }
+  }
+
+  .posts-category-slider--single{
+    .card-category {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      font-family: $font-raleway-extra-bold;
+      font-size: 0.786rem;
+      line-height: 1rem;
+      background: $pink;
+      color: $red;
+      padding: 0.393rem 0.857rem 0.464rem;
+    }
+
+    .card-time {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background-color: $white;
+      color: $black;
+      font-size: 0.786rem;
+      line-height: 0.786rem;
+      padding: 0.5rem 0.857rem 0.571rem;
+    }
+
+    .bookmark {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 1.071rem;
+      background-color: $beige;
+    }
+
+  }
+
+
+
+
+}
+
+
+

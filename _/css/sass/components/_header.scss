@@ -1,0 +1,153 @@
+.offcanvas-header {
+  padding: 1.786rem 1.143rem !important;
+  border-bottom: 1px solid $black;
+
+  h5 {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+  }
+}
+.offcanvas-body {
+  ul {
+    list-style-type: none;
+    padding: 0;
+    
+    li {
+      margin-bottom: 1rem;
+
+      a {
+        text-decoration: none;
+        color: $body-color;
+        font-size: 1.125rem;
+      }
+    }
+  }
+}
+.mobile-header-icons {
+  height: 100%;
+  
+  img {
+    width: 1.625rem;
+  }
+
+  .search-icon {
+    margin-right: 1rem;
+
+    img {
+      width: 1.25rem;
+    }
+  }
+}
+
+
+.header-top {
+
+  .menu {
+    display: flex;
+    margin-bottom: 0;
+    list-style-type: none;
+    padding-left: 0;
+
+    li {
+      
+      a {
+        padding: 0 .75rem;
+        text-decoration: none;
+        color: $black;
+        font-size: .875rem;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+
+.header-mid {
+
+  &__hamburger {
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__logo {
+    max-width: 360px;
+  }
+}
+
+.header-bot {
+
+  .menu {
+    display: flex;
+    margin-bottom: 0;
+    list-style-type: none;
+    padding: .625rem 0;
+
+    li {
+      a {
+        padding: 0 .75rem;
+        text-decoration: none;
+        color: $white;
+
+        &:hover {
+          color: $secondary;
+        }
+      }
+    }
+  }
+
+  .search-icon {
+    padding: .625rem 0;
+    cursor: pointer;
+
+    &:hover {
+      path {
+        fill: $secondary;
+      }
+    }
+  }
+}
+
+.search-modal {
+  background-color: rgba(18,21,25,.98);
+
+  .close {
+    position: absolute;
+    top: 10%;
+    right: 3.75rem;
+    color: $red;
+    cursor: pointer;
+  }
+
+  .modal-content {
+    background-color: unset;
+    max-width: 56.25rem;
+    padding: 0 1.25rem;
+    border: unset;
+
+    &__icon {
+      background: red;
+      padding: 10px;
+      border-radius: 50px;
+    }
+
+    form {
+      border-bottom: 1px solid $red;
+      display: flex;
+    }
+
+    input {
+      font-size: 3rem;
+      color: $white;
+      background-color: unset;
+      border: none;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+}

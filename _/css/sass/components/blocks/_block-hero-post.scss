@@ -1,0 +1,90 @@
+.hero-bg {
+  padding: 0;
+  @include media-breakpoint-up(lg) {
+    background: $purple;
+    padding: 4.5rem 11.429rem 0;
+    margin-bottom: 4.929rem;
+  }
+}
+.hero-post {
+  padding: 0.857rem 1.071rem 0;
+  margin-bottom: 1.714rem;
+  background-color: $purple;
+
+  @include media-breakpoint-up(lg) {
+    background-color: unset;
+    margin-bottom: -1.857rem;
+  }
+
+  &__title {
+    font-family: $font-raleway-extra-bold;
+    font-size: 2.429rem;
+    line-height: 3.036rem;
+    text-align: center;
+    color: $white;
+    margin-bottom: 0.857rem;
+    @include media-breakpoint-up(lg) {
+      text-align: left;
+      margin-bottom: 4rem;
+    }
+  }
+  &__gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      0deg,
+      rgba(51, 51, 51, 0.35),
+      rgba(51, 51, 51, 0.35)
+    );
+  }
+  &__image {
+    min-height: 32.143rem;
+    width: 100%;
+    object-fit: cover;
+
+    @include media-breakpoint-up(lg) {
+      min-height: 39.286rem;
+    }
+  }
+  &__desc {
+    position: absolute;
+    bottom: 50px;
+    padding: 0 1.714rem;
+    font-family: $font-raleway-extra-bold;
+    font-size: 1.929rem;
+    line-height: 2.429rem;
+    color: $white;
+    margin: 0;
+    @include media-breakpoint-up(lg) {
+      position: unset;
+      padding: 0;
+      margin-bottom: 2.214rem;
+    }
+  }
+}
+.hero-post__button {
+  padding: 0 1.143rem;
+  margin-bottom: 1.714rem;
+
+  @include media-breakpoint-up(lg) {
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+  a {
+    width: 100%;
+    padding: 1rem 0;
+    font-family: $font-raleway-extra-bold;
+    line-height: 1.25rem;
+    letter-spacing: 0.054rem;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(lg) {
+      padding: 1rem 2rem;
+      width: auto;
+    }
+  }
+}

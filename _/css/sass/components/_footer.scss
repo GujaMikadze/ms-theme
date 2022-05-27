@@ -1,0 +1,45 @@
+.footer-socials {
+  &__instagram {
+    &:hover {
+      path {
+        fill: $red;
+      }
+    }
+  }
+
+  &__facebook {
+    &:hover {
+      path {
+        fill: $blue;
+      }
+    }
+  }
+
+  &__tiktok {
+    &:hover {
+      path {
+        fill: $gray;
+      }
+    }
+  }
+}
+
+.footer-copyright {
+  background-color: rgba(0, 0, 0, 0.2);
+
+  a {
+    text-decoration: none;
+    color: $body-color;
+
+    &:hover {
+        background: -webkit-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 1) 14%,
+          rgba(7, 20, 231, 1) 46%,
+          rgba(228, 211, 9, 1) 100%
+        );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}

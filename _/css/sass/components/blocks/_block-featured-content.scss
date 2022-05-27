@@ -1,0 +1,100 @@
+.featured-content {
+  margin-bottom: 1.7143rem;
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 2.8571rem;
+  }
+  &__wrapper {
+    display: flex;
+    @include media-breakpoint-up(lg) {
+      flex-direction: column;
+    }
+  }
+  &__testimonial {
+    max-width: 2.2857rem;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    @include media-breakpoint-up(lg) {
+      max-width: 100%;
+      height: 2.2857rem;
+    }
+  }
+  &__heading {
+    font-family: "PlayfairDisplay-SemiBold";
+    font-size: 2.4286rem;
+    line-height: 2.7143rem;
+    text-align: right;
+    letter-spacing: 0.0179rem;
+    color: $white;
+    opacity: 0.2;
+    transform: rotate(-90deg);
+    writing-mode: tb-rl;
+    transform: rotate(-180deg);
+    position: absolute;
+    top: -0.2143rem;
+    left: 0;
+    margin: 0;
+    @include media-breakpoint-up(lg) {
+      writing-mode: unset;
+      transform: unset;
+      top: 0;
+      right: -0.2143rem;
+    }
+  }
+  &__bg {
+    height: 9.5rem;
+  }
+  &__box {
+    padding: 8.8571rem 1.7143rem 2.2857rem;
+    background: $beige;
+    @include media-breakpoint-up(lg) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1.7143rem 2.2857rem 2.2857rem;
+      background: $pink;
+    }
+  }
+  &__image {
+    position: absolute;
+    top: 1.7143rem;
+    left: 0;
+    max-height: 15.7143rem;
+    max-width: 20.5rem;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    @include media-breakpoint-up(md) {
+      max-width: 27.5rem;
+    }
+    @include media-breakpoint-up(lg) {
+      position: unset;
+      max-height: unset;
+      max-width: unset;
+    }
+  }
+  &__title {
+    font-family: $font-raleway-extra-bold;
+    font-size: 1.5714rem;
+    line-height: 2.2143rem;
+    margin-bottom: 0.8571rem;
+    @include media-breakpoint-up(lg) {
+      line-height: 2.3571rem;
+    }
+  }
+  &__desc {
+    font-family: $font-raleway-semi-bold;
+    font-size: 1.2143rem;
+    line-height: 1.7143rem;
+    margin-bottom: 1.7143rem;
+  }
+  &__button {
+    line-height: 1rem;
+    padding: 1.2143rem 0;
+    @include media-breakpoint-up(lg) {
+      max-width: 17.1429rem;
+      width: 100%;
+    }
+  }
+}

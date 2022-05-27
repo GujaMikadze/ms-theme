@@ -1,0 +1,77 @@
+// Body
+$body-color: #333333;
+
+// Colors
+$primary: #6f28ca;
+$secondary:#f6b027;
+$green: #29bb29;
+$pink: #f5cac3;
+$red: #ed3f40;
+$purple: #592d9c;
+$purple-gray: #71658c;
+$beige: #f7ede2;
+$lillac: #a8a0fb;
+$gray: #666666;
+$gray-light: #cccccc;
+$gray-cloudy: #b3bfd0;
+$black: #333333;
+$white: #fff;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "light": $gray-light,
+  "pink": $pink,
+  "red": $red,
+  "purple": $purple,
+  "purple-gray": $purple-gray,
+  "beige": $beige,
+  "lillac": $lillac,
+  "gray": $gray,
+  "gray-light": $gray-light,
+  "gray-cloudy": $gray-cloudy,
+  "green": $green,
+  "black": $black,
+);
+
+// Box shadows
+$box-shadow-sm: 0px 4px 8px rgba(48, 49, 51, 0.15);
+$box-shadow: 0px 8px 16px rgba(20, 0, 52, 0.3);
+
+// Font, line-height, and color for body text, headings, and more.
+$font-family-base: "Raleway";
+$font-size-base: 1rem;
+$font-size-sm: $font-size-base * 1.27272727273;
+$font-weight-normal: 500;
+$font-weight-bold: 800;
+$font-weight-bolder: $font-weight-bold;
+
+$h1-font-size: $font-size-base * 2.5;
+$h2-font-size: $font-size-base * 1.9285714285714286;
+$h3-font-size: $font-size-base * 1.5714285714285714;
+$h4-font-size: $font-size-base * 1.2142857142857142;
+$h5-font-size: $font-size-base;
+$h6-font-size: $font-size-base * 0.8571428571428571;
+
+$headings-font-family: $font-raleway-semi-bold;
+$headings-font-weight: 600;
+
+//Inputs
+$input-border-radius: 0;
+
+//Buttons
+$btn-border-radius: 0;
+
+//Spaces
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.143,
+  2: $spacer * 0.571,
+  3: $spacer * 0.857,
+  4: $spacer * 1.143,
+  5: $spacer * 3,
+);
+
+//Offcanvas
+$offcanvas-vertical-height: calc(100% - 56px);

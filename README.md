@@ -1,0 +1,3 @@
+# README #
+
+Sweeft Academy Theme
