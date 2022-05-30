@@ -4,7 +4,6 @@ import $  from 'jquery';
 document.addEventListener("DOMContentLoaded", function () {
   var accBody = document.getElementsByClassName("accordion-js");
   var vimeoDiv = document.getElementsByClassName("vimeo-div");
-  var section = $(`.accordion-js.course-active`).parent()[0].id;
 
   for (let i = 0; i < vimeoDiv.length; i++) {
       let vimeoId = vimeoDiv[i].getAttribute('data-vimeo-id');
@@ -21,8 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         vimeoPlayer.on('ended', function () {
-            let nakurebiVideo = vimeoId;
-            console.log(vimeoId);
+            let watchedVideo = vimeoId;
+            let nextVideo = vimeoDiv[i+1].getAttribute('data-vimeo-id');
+            var section = $(`div[data-video-id="${nextVideo}"`).parent()[0].id;
             for(let i = 0; i < accBody.length; i++) {
                 if(accBody[i].getAttribute('data-video-id') === vimeoId) {
                     accBody[i].classList += " bg-green";
@@ -31,7 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
             
             let data = {
                 'action': "meta_update",
-                'video': nakurebiVideo,
+                'video': watchedVideo,
+                'nextvid': nextVideo,
                 'user': userId,
                 'post': postId,
                 'section': section

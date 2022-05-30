@@ -7,25 +7,37 @@
 // =============================================================================
 
 $course_list = get_field('course_content');
-$user_data = get_user_meta(get_current_user_id());
+$user_data = get_user_meta(get_current_user_id(), 'course_enroll');
+
+
 
 $post_id = get_the_ID();
 $course_info = unserialize($user_data[$post_id][0]);
 
-
 if ($user_data) {
-    $search_id = array_key_exists($post_id, $user_data);
+    $search_id = array_search($post_id, array_column($user_data, 'course_id'));
+    $watched_vids = $user_data[$search_id]['watched_lesson'];
 }
-if(!($search_id)) {
-    add_user_meta(get_current_user_id(), $post_id, ['course_id' => $post_id, 'current_section' => 0, 'current_lesson' => 0]);
+if (!($search_id === 0 || $search_id)) {
+    $meta_value = array(
+        'course_id' => $post_id,
+        'current_section' => 0,
+        'current_lesson' => 0,
+        'watched_lesson' => []
+    );
+    add_user_meta(get_current_user_id(), 'course_enroll', $meta_value);
 }
 
+
+// $user_data[$search_id]['current_lesson']+4;
+// update_user_meta(get_current_user_id(), 'course_enroll', 'test', $user_data[$search_id]);
 echo '<pre>';
-print_r($course_info);
+print_r($user_data);
 echo '</pre>';
 echo '<pre>';
-var_dump($search_id);
+print_r($watched_vids);
 echo '</pre>';
+
 
 ?>
 
@@ -43,14 +55,20 @@ echo '</pre>';
                         <?php foreach ($course_list as $key => $item) : ?>
                             <div class="accordion-item course-accordion__item">
                                 <h2 class="accordion-header course-accordion__header" id="headingOne<?php echo $key ?>">
-                                    <button class="accordion-button course-accordion__button <?php echo ($course_info ? (($course_info['current_section'] == $key) ? '' :  'collapsed') : (($key == 0) ? '' : 'collapsed')); ?>" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne<?php echo $key ?>" aria-controls="collapseOne<?php echo $key ?>">
+                                    <button class="accordion-button course-accordion__button <?php echo (($search_id === 0 || $search_id) ? (($user_data[$search_id]['current_section'] == 'collapseOne' . $key) ? '' :  'collapsed') : (($key == 0) ? '' : 'collapsed')); ?>" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne<?php echo $key ?>" aria-controls="collapseOne<?php echo $key ?>">
                                         <?php echo $item['section_title'] ?>
                                     </button>
                                 </h2>
-                                <div id="collapseOne<?php echo $key ?>" class="accordion-collapse collapse <?php echo ($course_info ? (($course_info['current_section'] == $key) ? 'show' :  '') : (($key == 0) ? 'show' : '')); ?>" aria-labelledby="headingOne<?php echo $key ?>" data-bs-parent="#accordionExample<?php echo $key ?>">
+                                <div id="collapseOne<?php echo $key ?>" class="accordion-collapse collapse <?php echo (($search_id === 0 || $search_id) ? (($user_data[$search_id]['current_section'] == 'collapseOne' . $key) ? 'show' :  '') : (($key == 0) ? 'show' : '')); ?>" aria-labelledby="headingOne<?php echo $key ?>" data-bs-parent="#accordionExample<?php echo $key ?>">
                                     <?php if ($item['lessons']) : ?>
                                         <?php foreach ($item['lessons'] as $lesson) : ?>
-                                            <div data-video-id='<?php echo $lesson['video_id']; ?>' data-video='<?php echo $lesson['video_url'] ?>' class="accordion-js accordion-body course-accordion__body <?php echo $course_info ? (($course_info['current_section'] == $key && $course_info['current_lesson'] == array_search($lesson, $item['lessons'])) ? 'course-active' : '') : (($key == 0 && array_search($lesson, $item['lessons']) == 0) ? 'course-active' : '')  ?>">
+                                            <div data-video-id='<?php echo $lesson['video_id']; ?>'
+                                                 class="accordion-js accordion-body course-accordion__body
+                                                  <?php echo ($search_id === 0 || $search_id) ? (($user_data[$search_id]['current_section'] == 'collapseOne' . $key && $user_data[$search_id]['current_lesson'] == $lesson['video_id']) ? 'course-active' : '') : (($key == 0 && array_search($lesson, $item['lessons']) == 0) ? 'course-active' : '')  ?>
+                                                  <?php
+                                                        echo (array_search($lesson['video_id'], $watched_vids) === 0 || array_search($lesson['video_id'], $watched_vids)) ? 'bg-green' : ''; 
+                                                        ?>
+                                                  ">
                                                 <div class="d-flex justify-content-between align-items-center course-accordion__title">
                                                     <?php echo $lesson['lesson_title'] ?>
                                                     <div class="d-flex flex-column align-items-center">
@@ -86,7 +104,7 @@ echo '</pre>';
                             <div class="course-video-lesson">
                                 <?php foreach ($course_list as $key => $item) : ?>
                                     <?php foreach ($item['lessons'] as $lesson) : ?>
-                                        <div class="vimeo-div <?php echo $course_info ? (($course_info['current_section'] == $key && $course_info['current_lesson'] == array_search($lesson, $item['lessons'])) ? 'vimeo-active' : '') : (($key == 0 && array_search($lesson, $item['lessons']) == 0) ? 'vimeo-active' : '')  ?>" id="<?php echo $lesson['video_id']; ?>" data-vimeo-id="<?php echo $lesson['video_id'] ?>" data-user="<?php echo get_current_user_id(); ?>" data-post="<?php echo $post_id ?>"></div>
+                                        <div class="vimeo-div <?php echo ($search_id === 0 || $search_id) ? (($user_data[$search_id]['current_section'] == "collapseOne" . $key && $user_data[$search_id]['current_lesson'] == $lesson['video_id']) ? 'vimeo-active' : '') : (($key == 0 && array_search($lesson, $item['lessons']) == 0) ? 'vimeo-active' : '')  ?>" id="<?php echo $lesson['video_id']; ?>" data-vimeo-id="<?php echo $lesson['video_id'] ?>" data-user="<?php echo get_current_user_id(); ?>" data-post="<?php echo $post_id ?>"></div>
                                     <?php endforeach; ?>
                                 <?php endforeach; ?>
                             </div>
