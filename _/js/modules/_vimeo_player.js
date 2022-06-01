@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let watchedLessons = document.getElementsByClassName("bg-green");
 
   let doneModal = new Modal($("#doneModal"));
-  let leftModal = new Modal($("#leftModal"));
 
   for (let i = 0; i < vimeoDiv.length; i++) {
     let vimeoId = vimeoDiv[i].getAttribute("data-vimeo-id");
@@ -76,8 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (accBody.length == watchedLessons.length) {
           doneModal.show();
-        } else {
-          leftModal.show();
         }
       }
     });
