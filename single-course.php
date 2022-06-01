@@ -59,14 +59,13 @@ if (!($search_id === 0 || $search_id)) {
                                 <div id="collapseOne<?php echo $key ?>" class="accordion-collapse collapse <?php echo (($search_id === 0 || $search_id) ? (($user_data[$search_id]['current_section'] == 'collapseOne' . $key) ? 'show' :  '') : (($key == 0) ? 'show' : '')); ?>" aria-labelledby="headingOne<?php echo $key ?>" data-bs-parent="#accordionExample<?php echo $key ?>">
                                     <?php if ($item['lessons']) : ?>
                                         <?php foreach ($item['lessons'] as $lesson) : ?>
-                                            <div data-video-id='<?php echo $lesson['video_id']; ?>'
-                                                 class="accordion-js accordion-body course-accordion__body
+                                            <div data-video-id='<?php echo $lesson['video_id']; ?>' class="accordion-js accordion-body course-accordion__body
                                                   <?php echo ($search_id === 0 || $search_id) ? (($user_data[$search_id]['current_section'] == 'collapseOne' . $key && $user_data[$search_id]['current_lesson'] == $lesson['video_id']) ? 'course-active' : '') : (($key == 0 && array_search($lesson, $item['lessons']) == 0) ? 'course-active' : '')  ?>
                                                   <?php
-                                                  if($watched_vids){
-                                                      echo (array_search($lesson['video_id'], $watched_vids) === 0 || array_search($lesson['video_id'], $watched_vids)) ? 'bg-green' : ''; 
-                                                  }
-                                                        ?>
+                                                    if ($watched_vids) {
+                                                        echo (array_search($lesson['video_id'], $watched_vids) === 0 || array_search($lesson['video_id'], $watched_vids)) ? 'bg-green' : '';
+                                                    }
+                                                    ?>
                                                   ">
                                                 <div class="d-flex justify-content-between align-items-center course-accordion__title">
                                                     <?php echo $lesson['lesson_title'] ?>
@@ -112,6 +111,45 @@ if (!($search_id === 0 || $search_id)) {
                 </div>
             </div>
         <?php endif; ?>
+        <!-- Modal -->
+        <div class="modal fade" id="doneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Congrats You Have Finished This Course
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="<?php echo home_url() ?>">Home Page</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="leftModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        There Are More Lessons To Learn
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Return</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </main>
 
