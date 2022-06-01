@@ -21,7 +21,7 @@ $posts = $query->posts;
 	<main role="main">
 		<section class="container">
 			
-			<h1><?php single_cat_title(); _e( ' Posts', 'themeFront' ); ?></h1>
+			<h1><?php single_cat_title(); _e( ' Courses', 'themeFront' ); ?></h1>
 
 			<div class="row">
 				<?php foreach($posts as $post): ?>
@@ -54,7 +54,7 @@ $posts = $query->posts;
 								<p class="card-text">
 									<?php echo get_the_excerpt($post) ?>
 								</p>
-								<a href="<?php get_the_permalink($post) ?>" class="btn btn-primary">Open</a>
+								<a href="<?php echo get_the_permalink($post) ?>" class="btn btn-primary">Open</a>
 							</div>
 						</div>
 					</div>

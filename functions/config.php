@@ -90,7 +90,6 @@ function registrar_mis_menus()
 			'main' => __( 'Menu Principal' ),
 			'footer' => __( 'Footer' ),
 			'menu-secondary' => __( 'Menu Secondary' ),
-			// Añade aquí más menús
 		)
 	);
 }

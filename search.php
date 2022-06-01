@@ -21,7 +21,7 @@ $search_query = get_search_query();
 			
 		<?php if ( $search_query ) : //Si hay término de búsqueda ?>
 			
-			<h1><?php printf ( __( 'Has buscado "%s" <small>(%s)</small>', 'themeFront' ), $search_query, $posts_found ); ?></h1>
+			<h1><?php printf ( __( 'Search For "%s" <small>(%s)</small>', 'themeFront' ), $search_query, $posts_found ); ?></h1>
 			
 			<?php get_search_form(); ?>
 			

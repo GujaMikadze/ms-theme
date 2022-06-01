@@ -42,12 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 url: 'http://sweeftacademy.local/wp-admin/admin-ajax.php',
                 data: data,
                 nonce: nonce,
-                beforeSend: function( xhr ) {
-                    console.log("gagzavnamdis");
-                },
-                success: function (response) {
-                    console.log(response);
-                }
             });
         });
         

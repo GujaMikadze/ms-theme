@@ -21,22 +21,19 @@ if ($user_data) {
 if (!($search_id === 0 || $search_id)) {
     $meta_value = array(
         'course_id' => $post_id,
-        'current_section' => 0,
-        'current_lesson' => 0,
+        'current_section' => 'collapseOne0',
+        'current_lesson' => $course_list[0]['lessons'][0]['video_id'],
         'watched_lesson' => []
     );
     add_user_meta(get_current_user_id(), 'course_enroll', $meta_value);
 }
 
-
-// $user_data[$search_id]['current_lesson']+4;
-// update_user_meta(get_current_user_id(), 'course_enroll', 'test', $user_data[$search_id]);
-echo '<pre>';
-print_r($user_data);
-echo '</pre>';
-echo '<pre>';
-print_r($watched_vids);
-echo '</pre>';
+// echo '<pre>';
+// print_r($user_data);
+// echo '</pre>';
+// echo '<pre>';
+// print_r($course_list);
+// echo '</pre>';
 
 
 ?>
@@ -66,7 +63,9 @@ echo '</pre>';
                                                  class="accordion-js accordion-body course-accordion__body
                                                   <?php echo ($search_id === 0 || $search_id) ? (($user_data[$search_id]['current_section'] == 'collapseOne' . $key && $user_data[$search_id]['current_lesson'] == $lesson['video_id']) ? 'course-active' : '') : (($key == 0 && array_search($lesson, $item['lessons']) == 0) ? 'course-active' : '')  ?>
                                                   <?php
-                                                        echo (array_search($lesson['video_id'], $watched_vids) === 0 || array_search($lesson['video_id'], $watched_vids)) ? 'bg-green' : ''; 
+                                                  if($watched_vids){
+                                                      echo (array_search($lesson['video_id'], $watched_vids) === 0 || array_search($lesson['video_id'], $watched_vids)) ? 'bg-green' : ''; 
+                                                  }
                                                         ?>
                                                   ">
                                                 <div class="d-flex justify-content-between align-items-center course-accordion__title">
