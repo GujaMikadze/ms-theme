@@ -45,10 +45,18 @@
     }
   }
 
+  .swiper-wrapper {
+    padding-bottom: 40px;
+
+    @include media-breakpoint-up(lg) {
+      padding-bottom: 0;
+    }
+  }
+
   .swiper-button-prev {
     display: none;
 
-    @include media-breakpoint-up(640px) {
+    @include media-breakpoint-up(lg) {
       display: flex;
       left: -3%;
     }
@@ -57,9 +65,18 @@
   .swiper-button-next {
     display: none;
 
-    @include media-breakpoint-up(640px) {
+    @include media-breakpoint-up(lg) {
       display: flex;
       right: -3%;
+    }
+  }
+
+  .swiper-pagination {
+    display: block;
+    top: 94%;
+
+    @include media-breakpoint-up(lg) {
+      display: none;
     }
   }
 }

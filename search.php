@@ -25,7 +25,9 @@ $search_query = get_search_query();
 			
 			<?php get_search_form(); ?>
 			
-			<?php get_template_part('loop'); ?>
+			<div class="row">
+				<?php get_template_part('loop'); ?>
+			</div>
 			
 		<?php else : ?>
 

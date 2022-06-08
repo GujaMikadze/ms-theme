@@ -11,12 +11,21 @@ $category_slider = get_field('category');
 $args = array(
     'post_type' => 'course',
     'numberposts' => -1,
-    'cat' => $category_slider['categories'],
+    'tax_query' => [
+        [
+            'taxonomy' => 'course_type',
+            'field' => 'slug',
+            'terms' =>   $category_slider['categories']->slug
+        ]
+    ]
 );
 $postslist = new WP_Query($args);
 
 // echo "<pre>";
-// print_r($category_slider["posts"]);
+// print_r($category_slider);
+// echo "</pre>";
+// echo "<pre>";
+// print_r($postslist);
 // echo "</pre>";
 
 ?>
@@ -53,14 +62,12 @@ $postslist = new WP_Query($args);
                                 <h5 class="card-title">
                                     <?php echo get_the_title($slide->ID) ?>
                                 </h5>
-                                <?php if (isset(get_the_terms($slide->ID, 'category')[0]->name)) : ?>
+                                <?php if (count(get_the_terms($slide->ID, 'course_type'))) : ?>
                                     <div class="card__category mb-2">
-                                        <?php foreach (get_the_terms($slide->ID, 'category') as $category) : ?>
-                                            <?php if (!$category->parent) : ?>
-                                                <a href="<?php echo get_term_link($category->term_id) ?>">
-                                                    <?php echo $category->name; ?>
-                                                </a>
-                                            <?php endif; ?>
+                                        <?php foreach (get_the_terms($slide->ID, 'course_type') as $course_type) : ?>
+                                            <a href="<?php echo get_term_link($course_type->term_id) ?>">
+                                                <?php echo $course_type->name; ?>
+                                            </a>
                                         <?php endforeach; ?>
                                     </div>
                                 <?php endif; ?>
@@ -90,14 +97,12 @@ $postslist = new WP_Query($args);
                                 <h5 class="card-title">
                                     <?php echo get_the_title($slide) ?>
                                 </h5>
-                                <?php if (isset(get_the_terms($slide, 'category')[0]->name)) : ?>
+                                <?php if (count(get_the_terms($slide, 'course_type'))) : ?>
                                     <div class="card__category mb-2">
-                                        <?php foreach (get_the_terms($slide, 'category') as $category) : ?>
-                                            <?php if (!$category->parent) : ?>
-                                                <a href="<?php echo get_term_link($category->term_id) ?>">
-                                                    <?php echo $category->name; ?>
-                                                </a>
-                                            <?php endif; ?>
+                                        <?php foreach (get_the_terms($slide, 'course_type') as $course_type) : ?>
+                                            <a href="<?php echo get_term_link($course_type->term_id) ?>">
+                                                <?php echo $course_type->name; ?>
+                                            </a>
                                         <?php endforeach; ?>
                                     </div>
                                 <?php endif; ?>
@@ -111,6 +116,7 @@ $postslist = new WP_Query($args);
                 <?php endforeach ?>
             <?php } ?>
         </div>
+        <div class="swiper-pagination"></div>
     </div>
     <div class="swiper-button-prev prev"></div>
     <div class="swiper-button-next next"></div>

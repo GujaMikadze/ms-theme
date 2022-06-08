@@ -123,7 +123,7 @@ if (!($search_id === 0 || $search_id)) {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <a href="<?php echo home_url() ?>">Home Page</a>
+                        <a href="<?php echo home_url() ?>" class="btn bnt-primary">Home Page</a>
                     </div>
                 </div>
             </div>

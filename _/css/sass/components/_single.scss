@@ -58,6 +58,10 @@
 }
 .vimeo-div {
     display: none;
+
+    & > iframe {
+        width: 100%;
+    }
 }
 
 .vimeo-active {

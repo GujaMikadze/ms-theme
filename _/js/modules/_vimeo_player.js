@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let j = 0; j < accBody.length; j++) {
           if (accBody[j].getAttribute("data-video-id") === vimeoId) {
             accBody[j].classList += " bg-green";
+            accBody[j + 1].classList += " course-active";
+            vimeoDiv[i].classList.remove("vimeo-active");
+            vimeoDiv[i + 1].classList += "vimeo-active";
           }
         }
 

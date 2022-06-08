@@ -72,13 +72,13 @@
                         "class": "",
                         "id": ""
                     },
-                    "taxonomy": "category",
+                    "taxonomy": "course_type",
                     "field_type": "select",
                     "allow_null": 1,
                     "add_term": 0,
                     "save_terms": 0,
                     "load_terms": 0,
-                    "return_format": "id",
+                    "return_format": "object",
                     "multiple": 0
                 },
                 {
@@ -134,5 +134,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1652279233
+    "modified": 1654692062
 }

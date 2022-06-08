@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
           centerInsufficientSlides: true,
           pagination: {
             el: ".swiper-pagination",
-            clickable: true,
           },
           grabCursor: true,
           // loop: true,

@@ -97,7 +97,7 @@
             {
                 "param": "options_page",
                 "operator": "==",
-                "value": "opciones-globales"
+                "value": "global-options"
             }
         ]
     ],
@@ -109,5 +109,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1651214945
+    "modified": 1654264518
 }
