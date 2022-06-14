@@ -9,6 +9,7 @@ $category_slider = get_field('category');
 
 //get posts
 $args = array(
+    'posts_per_page' => '-1',
     'post_type' => 'course',
     'numberposts' => -1,
     'tax_query' => [

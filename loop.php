@@ -38,11 +38,11 @@
 
 				<?php if (is_search()) : ?>
 
-					<h2><?php printf(__('Lo siento, pero no hemos encontrado nada relacionado con tu búsqueda "%s"', 'themeFront'), $search_query); ?></h2>
+					<h2><?php printf(__('Sorry, but we can\'t find anything related to your search', 'themeFront'), $search_query); ?></h2>
 
 				<?php else : ?>
 
-					<h2><?php _e('Lo siento, pero todavía no tenemos post para mostrarte...', 'themeFront'); ?></h2>
+					<h2><?php _e('I\'m sorry, but we still don\'t have a post to show you...', 'themeFront'); ?></h2>
 
 				<?php endif; ?>
 

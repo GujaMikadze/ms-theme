@@ -50,9 +50,11 @@ jQuery(function($){ // use jQuery code inside this to avoid "$ is not defined" e
 			},
 			success : function( data ){
                 console.log(data);
+                data.data.posts.shift();
 				if( data ) { 
 					button.text( 'More posts' ).prev().before(data); // insert new posts
 					loadmore_params.current_page++;
+                    data.data.posts.shift();
                     $('.tax-course_type .row').append( data.data.posts.map((item) => post(item)).join(''));
 					if ( loadmore_params.current_page == loadmore_params.max_page ) 
 						button.remove(); // if last page, remove the button

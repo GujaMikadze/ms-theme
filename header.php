@@ -132,8 +132,8 @@
 
 			<!-- Modal content -->
 			<div class="modal-content">
-				<form role="search" method="get" class="form-inline" action="/">
-					<input class="form-control mr-sm-2" name="s" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+				<form role="search" method="get" autocomplete="off" class="form-inline" action="/">
+					<input class="form-control mr-sm-2 input_search" name="s" type="search" placeholder="Search" aria-label="Search" id="searchInput">
 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
 						<div class="modal-content__icon">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" class="bi bi-search" viewBox="0 0 16 16">
@@ -142,6 +142,11 @@
 						</div>
 					</button>
 				</form>
+				<div class="spinner-border search-spiner text-red" role="status" id="loading">
+					<span class="sr-only"></span>
+				</div>
+				<div class="search_result" id="datafetch">
+				</div>
 			</div>
 
 		</div>

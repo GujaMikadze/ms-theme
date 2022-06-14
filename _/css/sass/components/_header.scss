@@ -61,6 +61,12 @@
         }
       }
     }
+
+    .current-menu-item {
+      a {
+        color: $primary;
+      }
+    }
   }
 }
 
@@ -99,6 +105,12 @@
         &:hover {
           color: $secondary;
         }
+      }
+    }
+
+    .current-menu-item {
+      a {
+        color: $secondary;
       }
     }
   }
@@ -153,5 +165,18 @@
         box-shadow: none;
       }
     }
+  }
+
+  div.search_result {
+    display: none;
+    position: absolute;
+    top: 120px;
+  }
+
+  .search-spiner {
+    display: none;
+    position: relative;
+    left: 50%;
+    top: 20px;
   }
 }

@@ -31,7 +31,7 @@ $search_query = get_search_query();
 			
 		<?php else : ?>
 
-			<h1><?php _e( '¿Estás interesado en hacer alguna búsqueda?', 'themeFront' ); ?></h1>
+			<h1><?php _e( 'Are you interested in doing some searching?', 'themeFront' ); ?></h1>
 			
 			<?php get_search_form(); ?>
 			

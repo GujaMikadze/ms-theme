@@ -156,5 +156,14 @@ function loadmore_ajax_handler(){
   
 add_action('wp_ajax_loadmore', 'loadmore_ajax_handler'); // wp_ajax_{action}
 add_action('wp_ajax_nopriv_loadmore', 'loadmore_ajax_handler'); // wp_ajax_nopriv_{action}
+
+
+
+function tg_exclude_pages_from_search_results( $query ) {
+    if ( $query->is_main_query() && $query->is_search() && ! is_admin() ) {
+        $query->set( 'post_type', array( 'course' ) );
+    }    
+}
+add_action( 'pre_get_posts', 'tg_exclude_pages_from_search_results' );
 ?>
 
